@@ -1,0 +1,9 @@
+{:source-paths ["src/main/cljs"]
+
+ :builds {:app {:target :browser
+                :output-dir "public/js"
+                :asset-path "/js"
+                :modules {:main {:init-fn demo.core/init}}
+                :compiler-options {:optimizations :none} ;; Crucial for fast development and code reloading
+                :devtools {:http-port 8000
+                           :http-root "public"}}}} ;; Serve static files from the public directory
