@@ -1,5 +1,6 @@
 (ns demo.core
-  (:require [shadow.cljs.devtools.client.browser :as browser]))
+  (:require [shadow.cljs.devtools.client.browser :as browser])
+  (:gen-class))
 
 (defn ^:export update-message []
   "Updates the message in the DOM with a timestamp, demonstrating code reload."
