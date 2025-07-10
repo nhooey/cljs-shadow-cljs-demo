@@ -7,31 +7,15 @@ Example ClojureScript `shadow-cljs` project packaged with Nix Flakes, using `clj
 Currently fails with:
 
 ```
-$ nix develop
+$ nix develop --option eval-cache false
+warning: Git tree '/Users/nhooey/git/github/nhooey/cljs-shadow-cljs-demo' is dirty
+error: attribute 'currentSystem' missing
 
-error:
-       … while calling the 'derivationStrict' builtin
+       at /nix/store/kx92sy1aa13bnh65f26f1fqbzq8x0i3z-source/flake.nix:12:16:
 
-         at /builtin/derivation.nix:9:12: (source not available)
+           11|     let
+           12|       system = builtins.currentSystem; # This will be "aarch64-darwin" for you
+             |                ^
+           13|       pkgs = nixpkgs.legacyPackages.${system};
 
-       … while evaluating derivation 'nix-shell'
-         whose name attribute is located at /nix/store/i5zbq5by44gz4w1v0kwdcv2d8vacqhd1-source/pkgs/stdenv/generic/make-derivation.nix:468:13
-
-       … while evaluating attribute '__impureHostDeps' of derivation 'nix-shell'
-
-         at /nix/store/i5zbq5by44gz4w1v0kwdcv2d8vacqhd1-source/pkgs/stdenv/generic/make-derivation.nix:626:15:
-
-          625|               );
-          626|               __impureHostDeps =
-             |               ^
-          627|                 computedImpureHostDeps
-
-       error: attribute 'aarch64-darwin' missing
-
-       at /nix/store/0iradjngplq6dy6arh75mnwm2sv96kli-source/flake.nix:14:19:
-
-           13|         pkgs = nixpkgs.legacyPackages.${system};
-           14|         cljpkgs = clj-nix.lib.${system};
-             |                   ^
-           15|
 ```
